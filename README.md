@@ -1,4 +1,4 @@
-# SDK Python - APIGratis by API BRASIL
+# SDK Python - APIGratis by APIBrasil
 
 Conjunto de API, para desenvolvedores.
 
@@ -12,7 +12,7 @@ _Transforme seus projetos em solucoes inteligentes com nossa API. Com recursos c
 [![Telegram Group](https://img.shields.io/badge/Telegram-Group-32AFED?logo=telegram)](https://t.me/apigratisoficial)
 
 ## Obtenha suas credenciais
-https://apigratis.com.br
+https://apibrasil.com.br
 
 ## Mais informacoes
 
@@ -22,13 +22,14 @@ https://pypi.org/project/apigratis-sdk-python
 
 | Up  | Services available            | Description       | Free    | Beta        | Stable   |
 ------|-------------------------------|-------------------|---------| ------------------------- | ------------------------- |
-| Yes | WhatsAppService                | API do WhatsApp Gratuita.               |   Yes   | Yes                   | Pending                   |
-| Yes | Receita Data CNPJ              | API Dados CNPJ Receita.                 |   Yes   | Yes                   | Pending                   |
-| Yes | Receita Data CPF               | API Dados de CPF Serasa.                |   Yes   | Yes                   | Pending                   |
-| Yes | CorreiosService                | API Busca encomendas Correios Brazil.   |   Yes   | Yes                   | Pending                   |
-| Yes | CEPLocation                    | API CEP Geolocation + IBGE Brazil.      |   Yes   | Yes                   | Pending                   |
-| Yes | VehiclesService                | API Placa Dados.                        |   Yes   | Yes                   | Pending                   |
-| Yes | FipeService                    | API Placa FIPE.                         |   Yes   | Yes                   | Pending                   |
+| Yes | WhatsAppService                | API do WhatsApp                         |   Yes   | Yes                   | Yes                   |
+| Yes | SMS                            | API de SMS              .               |   Yes   | Yes                   | Yes                   |
+| Yes | Receita Data CNPJ              | API Dados CNPJ Receita.                 |   Yes   | Yes                   | Yes                   |
+| Yes | Receita Data CPF               | API Dados de CPF Serasa.                |   Yes   | Yes                   | Yes                   |
+| Yes | CorreiosService                | API Busca encomendas Correios Brazil.   |   Yes   | Yes                   | Yes                   |
+| Yes | CEPLocation                    | API CEP Geolocation + IBGE Brazil.      |   Yes   | Yes                   | Yes                   |
+| Yes | VehiclesService                | API Placa Dados.                        |   Yes   | Yes                   | Yes                   |
+| Yes | FipeService                    | API Placa FIPE.                         |   Yes   | Yes                   | Yes                   |
 
 ## Como utilizar
 
@@ -45,22 +46,39 @@ import json
 
 def whatsapp():
 
-    sendTePendingt = Service().whatsapp(json.dumps({
-        "action": "sendTePendingt",
+    #sendText
+    sendText = Service().whatsapp(json.dumps({
+        "action": "sendText",
         "credentials": {
-            "SecretKey": "SEU_SECRET_KEY",
-            "PublicToken": "SEU_PUBLIC_TOKEN",
             "DeviceToken": "SEU_DEVICE_TOKEN",
             "BearerToken": "SEU_BEARER_TOKEN",
         },
         "body": {
-            "message": "Hello World for Python",
-            "phone": "5531994359434",
+            "text": "Hello World for Python",
+            "number": "5531994359434",
             "time_typing": 1
         }
     }))
 
-    print(sendTePendingt)
+    #sendFile
+    sendFile = Service().whatsapp(json.dumps({
+        "action": "sendFile",
+        "credentials": {
+            "DeviceToken": "SEU_DEVICE_TOKEN",
+            "BearerToken": "SEU_BEARER_TOKEN",
+        },
+        "body":  {
+            "number" : "5531994359434",
+            "path" : "https://assets.nagios.com/downloads/nagiosxi/docs/Installing_The_XI_Linux_Agent.pdf",
+            "options" : {
+                "caption": "texto do caption para arquivo",
+                "createChat": True,
+                "filename": "arquivo X"
+            }
+        }
+    }))
+
+    print(sendFile)
 
 if __name__ == "__main__":
     whatsapp()
@@ -74,20 +92,18 @@ import json
 
 def vehicles():
 
-    vehicle = Service().vehicles(json.dumps({
+    dados = Service().vehicles(json.dumps({
         "action": "dados",
         "credentials": {
-            "SecretKey": "SEU_SECRET_KEY",
-            "PublicToken": "SEU_PUBLIC_TOKEN",
             "DeviceToken": "SEU_DEVICE_TOKEN",
             "BearerToken": "SEU_BEARER_TOKEN",
         },
-        "body": {
-            "placa": "OQH3065",
+        "body":  {
+            "placa": "OQH3A65"
         }
     }))
 
-    print(vehicle)
+    print(dados)
 
 if __name__ == "__main__":
     vehicles()
@@ -104,8 +120,6 @@ def fipe():
     vehicle = Service().vehicles(json.dumps({
         "action": "fipe",
         "credentials": {
-            "SecretKey": "SEU_SECRET_KEY",
-            "PublicToken": "SEU_PUBLIC_TOKEN",
             "DeviceToken": "SEU_DEVICE_TOKEN",
             "BearerToken": "SEU_BEARER_TOKEN",
         },
@@ -128,20 +142,18 @@ import json
 
 def cnpj():
 
-    vehicle = Service().cnpj(json.dumps({
-        "action": "/",
+    dados = Service().cnpj(json.dumps({
+        "action": "cnpj",
         "credentials": {
-            "SecretKey": "SEU_SECRET_KEY",
-            "PublicToken": "SEU_PUBLIC_TOKEN",
             "DeviceToken": "SEU_DEVICE_TOKEN",
             "BearerToken": "SEU_BEARER_TOKEN",
         },
         "body": {
-            "placa": "OQH3065",
+            "cnpj": "44.959.669/0001-80",
         }
     }))
 
-    print(vehicle)
+    print(dados)
 
 if __name__ == "__main__":
     cnpj()
