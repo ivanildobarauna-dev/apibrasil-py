@@ -1,4 +1,5 @@
 from typing import Optional, Tuple
+import json
 import requests
 
 class APIBrasilClient:
@@ -25,7 +26,11 @@ class APIBrasilClient:
 
     def post_request(self, endpoint: str, body: str) -> Tuple[int, Optional[str]]:
             url = self.BASE_URL + endpoint
-            response = requests.post(url=url, headers=self._headers(), data=body, allow_redirects=True, stream=True )
+            response = requests.post(url=url,
+                                     headers=self._headers(),
+                                     data=json.dumps(body),
+                                     allow_redirects=True,
+                                     stream=True )
 
             if response.status_code != 200:
                  return response.status_code, response.reason
