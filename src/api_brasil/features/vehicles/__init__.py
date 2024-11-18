@@ -1,5 +1,12 @@
+from enum import Enum
 from api_brasil import APIBrasilClient
 from api_brasil.features.interfaces import APIBrasilFeature
+
+
+class VehiclesApiEndpoint(Enum):
+    fipe = "fipe"
+    dados = "dados"
+
 
 
 class VehiclesApi(APIBrasilFeature):
@@ -10,14 +17,14 @@ class VehiclesApi(APIBrasilFeature):
     def set_plate(self, plate: str):
         self.plate = plate
     
-    def consulta_fipe(self):
+    def consulta(self, vechiles_api_endpoint: VehiclesApiEndpoint = VehiclesApiEndpoint.dados) -> tuple:
 
-        endpoint = "/vehicles/consultafipe"
+        endpoint = f"/vehicles/{vechiles_api_endpoint.value}"
 
         if not self.plate:
             raise ValueError("The plate is not set. Use the 'set_plate' method to set the plate.")
         
-        response = self.api_brasil_client.post_request(
+        response, status_code = self.api_brasil_client.post_request(
             endpoint=endpoint,
             device_token=self.device_token,
             body={
@@ -25,4 +32,4 @@ class VehiclesApi(APIBrasilFeature):
             }
         )
 
-        return response
+        return response, status_code

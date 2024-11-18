@@ -1,3 +1,5 @@
+
+from typing import Tuple
 import json
 import requests
 
@@ -21,7 +23,7 @@ class APIBrasilClient:
         
         return headers
 
-    def post_request(self, endpoint: str, device_token: str, body: str) -> dict:
+    def post_request(self, endpoint: str, device_token: str, body: str) -> Tuple[dict, int]:
             url = self.BASE_URL + endpoint
             response = requests.post(url=url,
                                      headers=self._headers(device_token=device_token),
@@ -37,6 +39,6 @@ class APIBrasilClient:
                       "response_body": response.json()
                  }
 
-                 return json.dumps(raw_response, indent=4)
+                 return json.dumps(raw_response, indent=4), response.status_code
 
-            return json.dumps(response.json(), indent=4)
+            return json.dumps(response.json(), indent=4), response.status_code

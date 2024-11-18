@@ -21,7 +21,7 @@ class WhatsAppApi(APIBrasilFeature):
         """ Set the phone number to send the message. """
         self.phone_number  = phone_number
 
-    def send_message(self, message: str) -> dict:
+    def send_message(self, message: str) -> tuple:
         """ Send a message to the phone number set. """
         endpoint = "/whatsapp/sendText"
 
@@ -31,7 +31,7 @@ class WhatsAppApi(APIBrasilFeature):
         if not message:
             raise ValueError("The message is empty.")
 
-        response = self.api_brasil_client.post_request(
+        response, status_code = self.api_brasil_client.post_request(
             endpoint=endpoint,
             device_token=self.device_token,
             body={
@@ -41,12 +41,12 @@ class WhatsAppApi(APIBrasilFeature):
             }
         )
 
-        return response
+        return response, status_code
     
     def send_file(self,
                    file_path: str,
                    file_description: str = None,
-                   create_chat: bool = True) -> dict:
+                   create_chat: bool = True) -> tuple:
         """ Send a file to the phone number set. """
         endpoint = "/whatsapp/sendFile"
 
@@ -56,7 +56,7 @@ class WhatsAppApi(APIBrasilFeature):
         if not file_path:
             raise ValueError("The file path is empty.")
 
-        response = self.api_brasil_client.post_request(
+        response, status_code = self.api_brasil_client.post_request(
             endpoint=endpoint,
             device_token=self.device_token,
             body={
@@ -71,4 +71,4 @@ class WhatsAppApi(APIBrasilFeature):
             }
         )
 
-        return response
+        return response, status_code
