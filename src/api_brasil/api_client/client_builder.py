@@ -1,4 +1,3 @@
-from typing import Optional, Tuple
 import json
 import requests
 
@@ -10,7 +9,7 @@ class APIBrasilClient:
                 user_agent: str = "APIBrasil/Python-SDK") -> None:
         
         self.bearer_token = bearer_token
-        self.user_agent = user_agent 
+        self.user_agent = user_agent
         
     def _headers(self, device_token: str) -> dict:
         headers = {
