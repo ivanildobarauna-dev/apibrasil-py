@@ -27,6 +27,7 @@ requests = "^2.32.3"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
+python-dotenv = "^1.0.1"
 
 [tool.poetry.urls]
 Homepage = "https://github.com/APIBrasil/apigratis-sdk-python"
