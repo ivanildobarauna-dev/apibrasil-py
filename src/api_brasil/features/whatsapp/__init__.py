@@ -1,4 +1,5 @@
 """ Application feature to send messages to WhatsApp using the API Brasil. """
+import os
 from api_brasil.api_client.client_builder import APIBrasilClient
 from api_brasil.features.interfaces import APIBrasilFeature
 
@@ -24,6 +25,12 @@ class WhatsAppApi(APIBrasilFeature):
         """ Send a message to the phone number set. """
         endpoint = "/whatsapp/sendText"
 
+        if not self.phone_number:
+            raise ValueError("The phone number is not set. Use the 'to_number' method to set the phone number.")
+        
+        if not message:
+            raise ValueError("The message is empty.")
+
         response = self.api_brasil_client.post_request(
             endpoint=endpoint,
             device_token=self.device_token,
@@ -36,15 +43,32 @@ class WhatsAppApi(APIBrasilFeature):
 
         return response
     
-    def send_file(self):
+    def send_file(self,
+                   file_path: str,
+                   file_description: str = None,
+                   create_chat: bool = True) -> dict:
         """ Send a file to the phone number set. """
         endpoint = "/whatsapp/sendFile"
+
+        if not self.phone_number:
+            raise ValueError("The phone number is not set. Use the 'to_number' method to set the phone number.")
+        
+        if not file_path:
+            raise ValueError("The file path is empty.")
+
         response = self.api_brasil_client.post_request(
             endpoint=endpoint,
             device_token=self.device_token,
             body={
                 "number": self.phone_number,
-                "path": self.file,
-                "time_typing": self.time_typing
+                "path": file_path,
+                "time_typing": self.time_typing,
+                "options" : {
+                    "caption": file_description if file_description else "", 
+                    "createChat": create_chat,
+                    "filename": os.path.basename(file_path),
+            }
             }
         )
+
+        return response
