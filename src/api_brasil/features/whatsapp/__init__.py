@@ -38,3 +38,13 @@ class WhatsAppApi(APIBrasilFeature):
     
     def send_file(self):
         """ Send a file to the phone number set. """
+        endpoint = "/whatsapp/sendFile"
+        response = self.api_brasil_client.post_request(
+            endpoint=endpoint,
+            device_token=self.device_token,
+            body={
+                "number": self.phone_number,
+                "path": self.file,
+                "time_typing": self.time_typing
+            }
+        )
