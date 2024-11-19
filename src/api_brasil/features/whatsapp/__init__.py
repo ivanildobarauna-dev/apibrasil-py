@@ -10,7 +10,6 @@ class WhatsAppApi(APIBrasilFeature):
                   api_brasil_client: APIBrasilClient,
                   device_token: str,
                   time_typing: int =1):
-        super().__init__(api_brasil_client)
         self.api_brasil_client = api_brasil_client
         self.device_token = device_token
         self.time_typing = time_typing

@@ -16,7 +16,7 @@ https://apibrasil.com.br
 
 ## Mais informacoes
 
-https://pypi.org/project/apigratis-sdk-python
+https://pypi.org/project/api-brasil
 
 ## Servicos de API disponiveis
 
@@ -31,130 +31,56 @@ https://pypi.org/project/apigratis-sdk-python
 | Yes | VehiclesService                | API Placa Dados.                        |   Yes   | Yes                   | Yes                   |
 | Yes | FipeService                    | API Placa FIPE.                         |   Yes   | Yes                   | Yes                   |
 
-## Como utilizar
+## Como Instalar
 
-_Voce pode utilizar todos os endpoints da API do WhatsApp, basta mudar o action e o body_
+* Usando pip
+
+``` bash
+pip install api-brasil 
+```
+
+* Usando poetry
+
+``` bash
+poetry add api-brasil 
+```
 
 ## Documentacoes
 https://apibrasil.com.br/documentacoes
 
-## WhatsApp Service
-
 ```python
-from apigratis.Service import Service
-import json
+from api_brasil import APIBrasilClient, WhatsAppApi, VehiclesApi, CNPJApi
+from api_brasil.features.vehicles import Endpoints
 
-def whatsapp():
 
-    #sendText
-    sendText = Service().whatsapp(json.dumps({
-        "action": "sendText",
-        "credentials": {
-            "DeviceToken": "SEU_DEVICE_TOKEN",
-            "BearerToken": "SEU_BEARER_TOKEN",
-        },
-        "body": {
-            "text": "Hello World for Python",
-            "number": "5531994359434",
-            "time_typing": 1
-        }
-    }))
+# Usando o cliente da API Brasil
+api_brasil_client = APIBrasilClient(bearer_token="your_bearer_token_here")  # Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
-    #sendFile
-    sendFile = Service().whatsapp(json.dumps({
-        "action": "sendFile",
-        "credentials": {
-            "DeviceToken": "SEU_DEVICE_TOKEN",
-            "BearerToken": "SEU_BEARER_TOKEN",
-        },
-        "body":  {
-            "number" : "5531994359434",
-            "path" : "https://assets.nagios.com/downloads/nagiosxi/docs/Installing_The_XI_Linux_Agent.pdf",
-            "options" : {
-                "caption": "texto do caption para arquivo",
-                "createChat": True,
-                "filename": "arquivo X"
-            }
-        }
-    }))
+# # Usando a API de WhatsApp
+whatsapp_api = WhatsAppApi(api_brasil_client=api_brasil_client, device_token="your_device_token_here") # Você pode encontrar o seu device token em https://apibrasil.com.br na área de Dispositivos
 
-    print(sendFile)
+# # Enviando uma mensagem
+whatsapp_api.to_number(phone_number="5511999999999")   # Número de telefone para enviar a mensagem
+response, status_code = whatsapp_api.send_message(message="Hello, estou integrado com sucesso com Api Brasil!")
 
-if __name__ == "__main__":
-    whatsapp()
-```
+print(response, status_code)
 
-## Vehicles Data Service
+# # Enviando um arquivo para o número definido no método to_number
+response, status_code = whatsapp_api.send_file(file_path="https://apibrasil.io/img/capa.png", file_description="Bem vindo a API Brasil")
 
-```python
-from apigratis.Service import Service
-import json
+print(response, status_code)
 
-def vehicles():
+# # Usando a API de Veículos
+vehicles_api = VehiclesApi(api_brasil_client=api_brasil_client, device_token="your_device_token_here")
+vehicles_api.set_plate(plate="ABC-1234")  # Placa do veículo
+response, status_code = vehicles_api.consulta(vechiles_api_endpoint=Endpoints.dados) # Consulta os dados do veículo
 
-    dados = Service().vehicles(json.dumps({
-        "action": "dados",
-        "credentials": {
-            "DeviceToken": "SEU_DEVICE_TOKEN",
-            "BearerToken": "SEU_BEARER_TOKEN",
-        },
-        "body":  {
-            "placa": "OQH3A65"
-        }
-    }))
+print(response, status_code)
 
-    print(dados)
+# # Usando a API de CNPJ
+cnpj_api = CNPJApi(api_brasil_client=api_brasil_client, device_token="your_device_token_here")
+cnpj_api.set_cnpj(cnpj="44.959.669/0001-80")  # CNPJ
+response, status_code = cnpj_api.consulta() # Consulta os dados do CNPJ
 
-if __name__ == "__main__":
-    vehicles()
-```
-
-## Vehicles FIPE Service
-
-```python
-from apigratis.Service import Service
-import json
-
-def fipe():
-
-    vehicle = Service().vehicles(json.dumps({
-        "action": "fipe",
-        "credentials": {
-            "DeviceToken": "SEU_DEVICE_TOKEN",
-            "BearerToken": "SEU_BEARER_TOKEN",
-        },
-        "body": {
-            "placa": "OQH3065",
-        }
-    }))
-
-    print(vehicle)
-
-if __name__ == "__main__":
-    fipe()
-```
-
-## Dados CNPJ Service
-
-```python
-from apigratis.Service import Service
-import json
-
-def cnpj():
-
-    dados = Service().cnpj(json.dumps({
-        "action": "cnpj",
-        "credentials": {
-            "DeviceToken": "SEU_DEVICE_TOKEN",
-            "BearerToken": "SEU_BEARER_TOKEN",
-        },
-        "body": {
-            "cnpj": "44.959.669/0001-80",
-        }
-    }))
-
-    print(dados)
-
-if __name__ == "__main__":
-    cnpj()
+print(response, status_code)
 ```
