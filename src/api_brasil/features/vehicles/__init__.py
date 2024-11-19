@@ -3,7 +3,7 @@ from api_brasil import APIBrasilClient
 from api_brasil.features.interfaces import APIBrasilFeature
 
 
-class VehiclesApiEndpoint(Enum):
+class Endpoints(Enum):
     fipe = "fipe"
     dados = "dados"
 
@@ -17,7 +17,7 @@ class VehiclesApi(APIBrasilFeature):
     def set_plate(self, plate: str):
         self.plate = plate
     
-    def consulta(self, vechiles_api_endpoint: VehiclesApiEndpoint = VehiclesApiEndpoint.dados) -> tuple:
+    def consulta(self, vechiles_api_endpoint: Endpoints = Endpoints.dados) -> tuple:
 
         endpoint = f"/vehicles/{vechiles_api_endpoint.value}"
 
