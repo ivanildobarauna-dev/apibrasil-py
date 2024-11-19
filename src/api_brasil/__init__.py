@@ -3,6 +3,13 @@ from api_brasil.api_client.client_builder import APIBrasilClient
 from api_brasil.features.whatsapp import WhatsAppApi
 from api_brasil.features.vehicles import VehiclesApi
 from api_brasil.features.cnpj import CNPJApi
+from api_brasil.features.correios import CorreiosAPI
 
 
-__all__ = ["APIBrasilClient", "WhatsAppApi", "VehiclesApi", "CNPJApi"]
+__all__ = [
+           "APIBrasilClient",
+           "WhatsAppApi",
+           "VehiclesApi",
+           "CNPJApi",
+           "CorreiosAPI",
+         ]

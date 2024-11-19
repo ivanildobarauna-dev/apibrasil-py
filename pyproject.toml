@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "api-brasil"
-version = "2.0.0"
+version = "2.0.1"
 description = "A ideia desse SDK é otimizar o tempo de código dos usuários auxiliando na integração com a plataforma."
 license = "MIT"
 readme = "README.md"

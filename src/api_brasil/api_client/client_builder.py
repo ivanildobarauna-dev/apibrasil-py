@@ -31,7 +31,7 @@ class APIBrasilClient:
                                      allow_redirects=True,
                                      stream=True)
 
-            if response.json()["error"]:
+            if not (200 <= response.status_code < 300):
                  raw_response = {
                       "is_error": response.json()["error"],
                       "response_status_code": response.status_code,
