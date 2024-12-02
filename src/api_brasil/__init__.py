@@ -6,6 +6,7 @@ from api_brasil.features.cnpj import CNPJApi
 from api_brasil.features.correios import CorreiosAPI
 from api_brasil.features.cep_geolocation import CEPGeoLocationAPI
 from api_brasil.features.cpf import CPFApi
+from api_brasil.features.sms import SMSApi
 
 
 __all__ = [
@@ -15,5 +16,6 @@ __all__ = [
            "CNPJApi",
            "CPFApi",
            "CorreiosAPI",
-           "CEPGeoLocationAPI"
+           "CEPGeoLocationAPI",
+           "SMSApi"
          ]
