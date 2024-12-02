@@ -45,22 +45,22 @@ class Service:
         except Exception as e:
             return {'error': str(e)}
 
-    def whatsapp(self, dados):
+    def whatsapp(self, dados): # OK
         return self.request('whatsapp', dados)
 
-    def vehicles(self, dados):
+    def vehicles(self, dados): # OK
         return self.request('vehicles', dados)
 
-    def correios(self, dados):
+    def correios(self, dados): # OK
         return self.request('correios', dados)
 
-    def cep(self, dados):
+    def cep(self, dados): # OK
         return self.request('cep', dados)
 
-    def cnpj(self, dados):
+    def cnpj(self, dados): # OK
         return self.request('dados', dados)
 
-    def cpf(self, dados):
+    def cpf(self, dados): # OK
         return self.request('dados/cpf', dados)
 
     def sms(self, dados):

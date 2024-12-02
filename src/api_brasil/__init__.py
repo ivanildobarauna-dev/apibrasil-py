@@ -4,6 +4,8 @@ from api_brasil.features.whatsapp import WhatsAppApi
 from api_brasil.features.vehicles import VehiclesApi
 from api_brasil.features.cnpj import CNPJApi
 from api_brasil.features.correios import CorreiosAPI
+from api_brasil.features.cep_geolocation import CEPGeoLocationAPI
+from api_brasil.features.cpf import CPFApi
 
 
 __all__ = [
@@ -11,5 +13,7 @@ __all__ = [
            "WhatsAppApi",
            "VehiclesApi",
            "CNPJApi",
+           "CPFApi",
            "CorreiosAPI",
+           "CEPGeoLocationAPI"
          ]
