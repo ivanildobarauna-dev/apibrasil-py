@@ -83,4 +83,39 @@ cnpj_api.set_cnpj(cnpj="44.959.669/0001-80")  # CNPJ
 response, status_code = cnpj_api.consulta() # Consulta os dados do CNPJ
 
 print(response, status_code)
+
+# # Usando a API de Correios
+correios_api = CorreiosAPI(api_brasil_client=api_brasil_client,
+                           device_token="your_device_token")
+correios_api.set_track_code(track_code="PN123456789BR")  # Código de rastreamento
+response, status_code = correios_api.track() # Rastreia o objeto
+
+print(response, status_code)
+
+# # Usando a API de Geolocalização de CEP
+cep_geolocation_api = CEPGeoLocationAPI(api_brasil_client=api_brasil_client,
+                           device_token="your_device_token")
+                           
+
+cep_geolocation_api.set_cep(cep="00000-000")  # CEP
+response, status_code = cep_geolocation_api.consulta() # Consulta a geolocalização do CEP
+
+print(response, status_code)
+
+
+# Usando a API de CPF
+cpf_api = CPFApi(api_brasil_client=api_brasil_client,
+                           device_token="your_device_token")
+cpf_api.set_cpf(cpf="00000000000")  # CPF
+response, status_code = cpf_api.consulta() # Consulta os dados do CPF
+print(response, status_code)
+
+# Usando a API de SMS
+
+sms = SMSApi(api_brasil_client=api_brasil_client,
+             device_token="61dd3da0-99b7-4d61-932f-f9c3a2fe011d")
+
+sms.set_phone_number(number="5511900000000")  # Número de telefone 
+response, status_code = sms.send(message="Hello, estou integrado com sucesso com Api Brasil!") # Envia a mensagem
+print(response, status_code)
 ```
