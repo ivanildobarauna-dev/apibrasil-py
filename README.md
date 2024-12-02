@@ -4,9 +4,6 @@ Conjunto de API, para desenvolvedores.
 
 _Transforme seus projetos em solucoes inteligentes com nossa API. Com recursos como API do WhatsApp, geolocalizacao, rastreamento de encomendas, verificacao de CPF/CNPJ e mais, voce pode criar solucoes eficientes e funcionais._
 
-## Como instalar
-
-```pip install apigratis-sdk-python```
 ## Canais de suporte (Comunidade)
 [![WhatsApp Group](https://img.shields.io/badge/WhatsApp-Group-25D366?logo=whatsapp)](https://chat.whatsapp.com/EeAWALQb6Ga5oeTbG7DD2k)
 [![Telegram Group](https://img.shields.io/badge/Telegram-Group-32AFED?logo=telegram)](https://t.me/apigratisoficial)
@@ -47,6 +44,10 @@ poetry add api-brasil
 
 ## Documentacoes
 https://apibrasil.com.br/documentacoes
+
+## Como usar?
+
+OBS: Isso só funcionará se você instalar a lib corretamente, veja a sessão: "Como Instalar" neste README
 
 ```python
 from api_brasil import APIBrasilClient, WhatsAppApi, VehiclesApi, CNPJApi
