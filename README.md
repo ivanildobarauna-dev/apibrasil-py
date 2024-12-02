@@ -179,7 +179,7 @@ api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
 # Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
 sms = SMSApi(api_brasil_client=api_brasil_client,
-             device_token="61dd3da0-99b7-4d61-932f-f9c3a2fe011d")
+             device_token="your_device_token")
 
 sms.set_phone_number(number="5511900000000")  # Número de telefone 
 response, status_code = sms.send(message="Hello, estou integrado com sucesso com Api Brasil!") # Envia a mensagem
