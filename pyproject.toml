@@ -23,12 +23,13 @@ include = ["api-brasil*"]
 
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.9"
 requests = "^2.32.3"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
 python-dotenv = "^1.0.1"
+black = "^24.10.0"
 
 [tool.poetry.urls]
 Homepage = "https://apibrasi.com.br"
