@@ -165,4 +165,6 @@ cython_debug/
 ## Github CodeScapes
 .devcontainer/
 
+# CustomFiles
 example.py
+Service.py
