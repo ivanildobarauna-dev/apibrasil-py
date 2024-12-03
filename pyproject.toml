@@ -1,32 +1,40 @@
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[project]
-name = "apigratis-sdk-python"
-description = "A ideia desse SDK é otimizar o tempo de código dos usuários auxiliando na integração com a plataforma"
-version = "1.0.2"
-authors = [
-  { name="APIBRASIL", email="contato@apibrasil.com.br" },
-]
-license = { file = "LICENSE" }
+[tool.poetry]
+name = "api-brasil"
+version = "2.0.4"
+description = "A ideia desse SDK é otimizar o tempo de código dos usuários auxiliando na integração com a plataforma."
+license = "MIT"
 readme = "README.md"
-keywords = ["python", "package", "build", "tutorial"]
-requires-python = ">=3.7"
+authors = [
+    "Ivanildo Barauna de Souza Junior <ivanildo.jnr@outlook.com>",
+    "APIBRASIL <contato@apibrasil.com.br>"
+]
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "Intended Audience :: Technology/Science",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    "Operating System :: OS Independent",
+     "Intended Audience :: Developers",
+      "Programming Language :: Python :: 3",
+      "License :: OSI Approved :: MIT License",
+      "Operating System :: OS Independent",
 ]
 
-[project.optional-dependencies]
-dev = ["pytest"]
 
-[project.urls]
-"Homepage" = "https://github.com/APIBrasil/apigratis-sdk-python"
-"Repository" = "https://github.com/APIBrasil/apigratis-sdk-python.git"
-"Bug Tracker" = "https://github.com/APIBrasil/apigratis-sdk-python/issues"
+[tool.setuptools.packages.find]
+where = ["src/"]
+include = ["api-brasil*"]
 
-[project.scripts]
-apigratis = "apigratis.__main__:main"
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+requests = "^2.32.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+python-dotenv = "^1.0.1"
+
+[tool.poetry.urls]
+Homepage = "https://github.com/APIBrasil/apigratis-sdk-python"
+Repository = "https://github.com/APIBrasil/apigratis-sdk-python.git"
+BugTracker = "https://github.com/APIBrasil/apigratis-sdk-python/issues"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
