@@ -43,5 +43,5 @@ jobs:
 
       - name: Publish package
         env: 
-          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
         run: poetry publish --username __token__ --password $POETRY_PYPI_TOKEN_PYPI

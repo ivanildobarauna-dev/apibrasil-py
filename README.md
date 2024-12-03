@@ -1,54 +1,50 @@
-# SDK Python - APIGratis by APIBrasil
+# SDK Python - APIBrasil: Feito por desenvolvedores, para desenvolvedores.
 
-Conjunto de API, para desenvolvedores.
+Desbloqueie todo o potencial dos seus projetos com a APIBrasil! Integre funcionalidades como API do WhatsApp, geolocalização, rastreamento de encomendas, consulta de CPF/CNPJ e muito mais. Crie soluções inteligentes, eficientes e funcionais com rapidez e simplicidade.
 
-_Transforme seus projetos em solucoes inteligentes com nossa API. Com recursos como API do WhatsApp, geolocalizacao, rastreamento de encomendas, verificacao de CPF/CNPJ e mais, voce pode criar solucoes eficientes e funcionais._
-
-## Como instalar
-
-## Canais de suporte (Comunidade)
-[![WhatsApp Group](https://img.shields.io/badge/WhatsApp-Group-25D366?logo=whatsapp)](https://chat.whatsapp.com/EeAWALQb6Ga5oeTbG7DD2k)
-[![Telegram Group](https://img.shields.io/badge/Telegram-Group-32AFED?logo=telegram)](https://t.me/apigratisoficial)
-
-## Obtenha suas credenciais
-https://apibrasil.com.br
-
-## Mais informacoes
-
-https://pypi.org/project/api-brasil
-
-## Servicos de API disponiveis
-
-| Up  | Services available            | Description       | Free    | Beta        | Stable   |
-------|-------------------------------|-------------------|---------| ------------------------- | ------------------------- |
-| Yes | WhatsAppService                | API do WhatsApp                         |   Yes   | Yes                   | Yes                   |
-| Yes | SMS                            | API de SMS              .               |   Yes   | Yes                   | Yes                   |
-| Yes | Receita Data CNPJ              | API Dados CNPJ Receita.                 |   Yes   | Yes                   | Yes                   |
-| Yes | Receita Data CPF               | API Dados de CPF Serasa.                |   Yes   | Yes                   | Yes                   |
-| Yes | CorreiosService                | API Busca encomendas Correios Brazil.   |   Yes   | Yes                   | Yes                   |
-| Yes | CEPLocation                    | API CEP Geolocation + IBGE Brazil.      |   Yes   | Yes                   | Yes                   |
-| Yes | VehiclesService                | API Placa Dados.                        |   Yes   | Yes                   | Yes                   |
-| Yes | FipeService                    | API Placa FIPE.                         |   Yes   | Yes                   | Yes                   |
-
-## Como Instalar
-
-* Usando pip
-
-``` bash
-pip install api-brasil 
-```
-
-* Usando poetry
-
-``` bash
-poetry add api-brasil 
-```
-
-# Documentacoes e Guias de Uso
+## Documentações das APIs
 https://apibrasil.com.br/documentacoes
 
 
-## _WhatsAppApi_
+## Features Disponíveis
+
+| Up  | Services available            | Description       | Free    | Stable   |
+------|-------------------------------|-------------------|---------| -------------------------| 
+| ✅ | WhatsAppApi                   | API do WhatsApp                         |   ✅                      | ✅                   
+| ✅ | SMSApi                        | API de SMS              .               |   ✅                      | ✅                   
+| ✅ | CNPJApi                       | API Dados CNPJ Receita.                 |   ✅                      | ✅                   
+| ✅ | CPFApi.                       | API Dados de CPF Serasa.                |   ✅                      | ✅                   
+| ✅ | CorreiosAPI.                  | API Busca encomendas Correios Brazil.   |   🚧                      | ✅                   
+| ✅ | CEPGeoLocationAPI             | API CEP Geolocation + IBGE Brazil.      |   ✅                      | ✅                   
+| ✅ | VehiclesApi                   | API Placa Dados.                        |   ✅                      | ✅                   
+| ✅ | VehiclesApi                   | API Placa FIPE.                         |   ✅                      | ✅                   
+
+
+## Como usar esta SDK? 
+
+1. Faça seu cadastro na plataforma -> https://apibrasil.com.br
+
+2. Obtenha suas credenciais -> https://plataforma.apibrasil.com.br/myaccount/credentials
+    - Importante: Você pode colocar suas credenciais diretamente em código o que chamamos de hard-coded, porém nós recomendamos que você coloque suas credenciais em variáveis de ambiente ou serviços gerenciados específicos para secrets.
+
+2. Como Instalar
+
+    * Usando pip
+
+    ``` bash
+    pip install api-brasil 
+    ```
+
+    * Usando poetry
+
+    ``` bash
+    poetry add api-brasil 
+    ```
+
+
+## Usando as APIs na prática, lets do this!
+
+### _WhatsAppApi_
 ```python
 from api_brasil import APIBrasilClient, WhatsAppApi
 
@@ -75,7 +71,7 @@ response, status_code = whatsapp_api.send_file(file_path="https://apibrasil.io/i
 print(response, status_code)
 
 ```
-## _VehiclesAPI_
+### _VehiclesAPI_
 
 ```python
 
@@ -95,7 +91,7 @@ response, status_code = vehicles_api.consulta(vechiles_api_endpoint=Endpoints.da
 print(response, status_code)
 ```
 
-## _CNPJApi_
+### _CNPJApi_
 ```python
 from api_brasil import APIBrasilClient, CNPJApi
 
@@ -112,7 +108,7 @@ response, status_code = cnpj_api.consulta() # Consulta os dados do CNPJ
 print(response, status_code)
 ```
 
-## _CorreiosApi_
+### _CorreiosApi_
 ```python
 # # Usando a API de Correios
 from api_brasil import APIBrasilClient, CorreiosAPI
@@ -131,7 +127,7 @@ print(response, status_code)
 
 ```
 
-## _GeoLocalizationAPI_
+### _GeoLocalizationAPI_
 ```python
 # # Usando a API de Geolocalização de CEP
 from api_brasil import APIBrasilClient, CEPGeoLocationAPI
@@ -151,7 +147,7 @@ response, status_code = cep_geolocation_api.consulta() # Consulta a geolocaliza�
 print(response, status_code)
 ```
 
-## CPFApi
+### CPFApi
 ```python
 # Usando a API de CPF
 from api_brasil import APIBrasilClient, CPFApi
@@ -169,7 +165,7 @@ print(response, status_code)
 
 ```
 
-## _SMSApi_
+### _SMSApi_
 ```python
 # Usando a API de SMS
 from api_brasil import APIBrasilClient, SMSApi
@@ -185,3 +181,7 @@ sms.set_phone_number(number="5511900000000")  # Número de telefone
 response, status_code = sms.send(message="Hello, estou integrado com sucesso com Api Brasil!") # Envia a mensagem
 print(response, status_code)
 ```
+
+# Canais de suporte e comunidade
+[![WhatsApp Group](https://img.shields.io/badge/WhatsApp-Group-25D366?logo=whatsapp)](https://chat.whatsapp.com/EeAWALQb6Ga5oeTbG7DD2k)
+[![Telegram Group](https://img.shields.io/badge/Telegram-Group-32AFED?logo=telegram)](https://t.me/apigratisoficial)
