@@ -6,7 +6,6 @@ _Transforme seus projetos em solucoes inteligentes com nossa API. Com recursos c
 
 ## Como instalar
 
-```pip install apigratis-sdk-python```
 ## Canais de suporte (Comunidade)
 [![WhatsApp Group](https://img.shields.io/badge/WhatsApp-Group-25D366?logo=whatsapp)](https://chat.whatsapp.com/EeAWALQb6Ga5oeTbG7DD2k)
 [![Telegram Group](https://img.shields.io/badge/Telegram-Group-32AFED?logo=telegram)](https://t.me/apigratisoficial)
@@ -16,7 +15,7 @@ https://apibrasil.com.br
 
 ## Mais informacoes
 
-https://pypi.org/project/apigratis-sdk-python
+https://pypi.org/project/api-brasil
 
 ## Servicos de API disponiveis
 
@@ -31,130 +30,158 @@ https://pypi.org/project/apigratis-sdk-python
 | Yes | VehiclesService                | API Placa Dados.                        |   Yes   | Yes                   | Yes                   |
 | Yes | FipeService                    | API Placa FIPE.                         |   Yes   | Yes                   | Yes                   |
 
-## Como utilizar
+## Como Instalar
 
-_Voce pode utilizar todos os endpoints da API do WhatsApp, basta mudar o action e o body_
+* Usando pip
 
-## Documentacoes
+``` bash
+pip install api-brasil 
+```
+
+* Usando poetry
+
+``` bash
+poetry add api-brasil 
+```
+
+# Documentacoes e Guias de Uso
 https://apibrasil.com.br/documentacoes
 
-## WhatsApp Service
+
+## _WhatsAppApi_
+```python
+from api_brasil import APIBrasilClient, WhatsAppApi
+
+# Instancie o client da APIBrasil
+api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+# Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
+
+
+## Usando a API de WhatsApp
+whatsapp_api = WhatsAppApi(api_brasil_client=api_brasil_client device_token="your_device_token_here") 
+### Você pode encontrar o seu device token em https://apibrasil.com.br na área de Dispositivos
+
+
+# # Enviando uma mensagem
+whatsapp_api.to_number(phone_number="5511999999999")   # Número de telefone para enviar a mensagem
+response, status_code = whatsapp_api.send_message(message="Hello, estou integrado com sucesso com Api Brasil!")
+
+print(response, status_code)
+
+
+# # Enviando um arquivo para o número definido no método to_number
+response, status_code = whatsapp_api.send_file(file_path="https://apibrasil.io/img/capa.png", file_description="Bem vindo a API Brasil")
+
+print(response, status_code)
+
+```
+## _VehiclesAPI_
 
 ```python
-from apigratis.Service import Service
-import json
 
-def whatsapp():
+from api_brasil import APIBrasilClient, VehiclesAPI
+from api_brasil.features.vehicles import Endpoints
 
-    #sendText
-    sendText = Service().whatsapp(json.dumps({
-        "action": "sendText",
-        "credentials": {
-            "DeviceToken": "SEU_DEVICE_TOKEN",
-            "BearerToken": "SEU_BEARER_TOKEN",
-        },
-        "body": {
-            "text": "Hello World for Python",
-            "number": "5531994359434",
-            "time_typing": 1
-        }
-    }))
+# Instancie o client da APIBrasil
+api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+# Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
-    #sendFile
-    sendFile = Service().whatsapp(json.dumps({
-        "action": "sendFile",
-        "credentials": {
-            "DeviceToken": "SEU_DEVICE_TOKEN",
-            "BearerToken": "SEU_BEARER_TOKEN",
-        },
-        "body":  {
-            "number" : "5531994359434",
-            "path" : "https://assets.nagios.com/downloads/nagiosxi/docs/Installing_The_XI_Linux_Agent.pdf",
-            "options" : {
-                "caption": "texto do caption para arquivo",
-                "createChat": True,
-                "filename": "arquivo X"
-            }
-        }
-    }))
 
-    print(sendFile)
+# # Usando a API de Veículos
+vehicles_api = VehiclesApi(api_brasil_client=api_brasil_client, device_token="your_device_token_here")
+vehicles_api.set_plate(plate="ABC-1234")  # Placa do veículo
+response, status_code = vehicles_api.consulta(vechiles_api_endpoint=Endpoints.dados) # Consulta os dados do veículo
 
-if __name__ == "__main__":
-    whatsapp()
+print(response, status_code)
 ```
 
-## Vehicles Data Service
-
+## _CNPJApi_
 ```python
-from apigratis.Service import Service
-import json
+from api_brasil import APIBrasilClient, CNPJApi
 
-def vehicles():
+# Instancie o client da APIBrasil
+api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+# Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
-    dados = Service().vehicles(json.dumps({
-        "action": "dados",
-        "credentials": {
-            "DeviceToken": "SEU_DEVICE_TOKEN",
-            "BearerToken": "SEU_BEARER_TOKEN",
-        },
-        "body":  {
-            "placa": "OQH3A65"
-        }
-    }))
 
-    print(dados)
+# # Usando a API de CNPJ
+cnpj_api = CNPJApi(api_brasil_client=api_brasil_client, device_token="your_device_token_here")
+cnpj_api.set_cnpj(cnpj="44.959.669/0001-80")  # CNPJ
+response, status_code = cnpj_api.consulta() # Consulta os dados do CNPJ
 
-if __name__ == "__main__":
-    vehicles()
+print(response, status_code)
 ```
 
-## Vehicles FIPE Service
-
+## _CorreiosApi_
 ```python
-from apigratis.Service import Service
-import json
+# # Usando a API de Correios
+from api_brasil import APIBrasilClient, CorreiosAPI
 
-def fipe():
+# Instancie o client da APIBrasil
+api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+# Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
-    vehicle = Service().vehicles(json.dumps({
-        "action": "fipe",
-        "credentials": {
-            "DeviceToken": "SEU_DEVICE_TOKEN",
-            "BearerToken": "SEU_BEARER_TOKEN",
-        },
-        "body": {
-            "placa": "OQH3065",
-        }
-    }))
 
-    print(vehicle)
+correios_api = CorreiosAPI(api_brasil_client=api_brasil_client,
+                           device_token="your_device_token")
+correios_api.set_track_code(track_code="PN123456789BR")  # Código de rastreamento
+response, status_code = correios_api.track() # Rastreia o objeto
 
-if __name__ == "__main__":
-    fipe()
+print(response, status_code)
+
 ```
 
-## Dados CNPJ Service
-
+## _GeoLocalizationAPI_
 ```python
-from apigratis.Service import Service
-import json
+# # Usando a API de Geolocalização de CEP
+from api_brasil import APIBrasilClient, CEPGeoLocationAPI
 
-def cnpj():
+# Instancie o client da APIBrasil
+api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+# Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
-    dados = Service().cnpj(json.dumps({
-        "action": "cnpj",
-        "credentials": {
-            "DeviceToken": "SEU_DEVICE_TOKEN",
-            "BearerToken": "SEU_BEARER_TOKEN",
-        },
-        "body": {
-            "cnpj": "44.959.669/0001-80",
-        }
-    }))
 
-    print(dados)
+cep_geolocation_api = CEPGeoLocationAPI(api_brasil_client=api_brasil_client,
+                           device_token="your_device_token")
+                           
 
-if __name__ == "__main__":
-    cnpj()
+cep_geolocation_api.set_cep(cep="00000-000")  # CEP
+response, status_code = cep_geolocation_api.consulta() # Consulta a geolocalização do CEP
+
+print(response, status_code)
+```
+
+## CPFApi
+```python
+# Usando a API de CPF
+from api_brasil import APIBrasilClient, CPFApi
+
+# Instancie o client da APIBrasil
+api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+# Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
+
+
+cpf_api = CPFApi(api_brasil_client=api_brasil_client,
+                           device_token="your_device_token")
+cpf_api.set_cpf(cpf="00000000000")  # CPF
+response, status_code = cpf_api.consulta() # Consulta os dados do CPF
+print(response, status_code)
+
+```
+
+## _SMSApi_
+```python
+# Usando a API de SMS
+from api_brasil import APIBrasilClient, SMSApi
+
+# Instancie o client da APIBrasil
+api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+# Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
+
+sms = SMSApi(api_brasil_client=api_brasil_client,
+             device_token="your_device_token")
+
+sms.set_phone_number(number="5511900000000")  # Número de telefone 
+response, status_code = sms.send(message="Hello, estou integrado com sucesso com Api Brasil!") # Envia a mensagem
+print(response, status_code)
 ```
