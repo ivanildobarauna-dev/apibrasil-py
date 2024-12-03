@@ -12,7 +12,7 @@ on:
   release:
     types: [published]
 
-  workflow_dispatch: 
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -42,6 +42,10 @@ jobs:
         run: poetry build
 
       - name: Publish package
-        env: 
+        env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
         run: poetry publish --username __token__ --password $POETRY_PYPI_TOKEN_PYPI
+
+    environment:
+      name: Production
+      url: https://pypi.org/project/api-brasil/
