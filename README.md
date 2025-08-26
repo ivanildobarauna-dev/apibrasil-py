@@ -5,6 +5,9 @@ Desbloqueie todo o potencial dos seus projetos com a APIBrasil! Integre funciona
 ## Documentações das APIs
 https://apibrasil.com.br/documentacoes
 
+## Deep Wiki
+[![Ask to DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/ivanildobarauna-dev/apibrasil-py)
+
 
 ## Features Disponíveis
 
