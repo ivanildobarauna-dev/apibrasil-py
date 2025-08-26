@@ -52,7 +52,7 @@ https://apibrasil.com.br/documentacoes
 from api_brasil import APIBrasilClient, WhatsAppApi
 
 # Instancie o client da APIBrasil
-api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+api_brasil_client = APIBrasilClient(bearer_token="your_bearer_token_here")
 # Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
 
@@ -82,7 +82,7 @@ from api_brasil import APIBrasilClient, VehiclesAPI
 from api_brasil.features.vehicles import Endpoints
 
 # Instancie o client da APIBrasil
-api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+api_brasil_client = APIBrasilClient(bearer_token="your_bearer_token_here")
 # Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
 
@@ -99,7 +99,7 @@ print(response, status_code)
 from api_brasil import APIBrasilClient, CNPJApi
 
 # Instancie o client da APIBrasil
-api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+api_brasil_client = APIBrasilClient(bearer_token="your_bearer_token_here")
 # Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
 
@@ -117,7 +117,7 @@ print(response, status_code)
 from api_brasil import APIBrasilClient, CorreiosAPI
 
 # Instancie o client da APIBrasil
-api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+api_brasil_client = APIBrasilClient(bearer_token="your_bearer_token_here")
 # Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
 
@@ -156,7 +156,7 @@ print(response, status_code)
 from api_brasil import APIBrasilClient, CPFApi
 
 # Instancie o client da APIBrasil
-api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+api_brasil_client = APIBrasilClient(bearer_token="your_bearer_token_here")
 # Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
 
@@ -174,7 +174,7 @@ print(response, status_code)
 from api_brasil import APIBrasilClient, SMSApi
 
 # Instancie o client da APIBrasil
-api_brasil_client = APIBrasilClien(bearer_token="your_bearer_token_here")
+api_brasil_client = APIBrasilClient(bearer_token="your_bearer_token_here")
 # Você pode encontrar o seu bearer token em https://apibrasil.com.br na área de Credenciais
 
 sms = SMSApi(api_brasil_client=api_brasil_client,
