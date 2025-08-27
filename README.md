@@ -3,7 +3,7 @@
 Desbloqueie todo o potencial dos seus projetos com a APIBrasil! Integre funcionalidades como API do WhatsApp, geolocalização, rastreamento de encomendas, consulta de CPF/CNPJ e muito mais. Crie soluções inteligentes, eficientes e funcionais com rapidez e simplicidade.
 
 ## Documentações das APIs
-https://apibrasil.com.br/documentacoes
+https://doc.apibrasil.io
 
 ## Deep Wiki
 [![Ask to DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/ivanildobarauna-dev/apibrasil-py)
@@ -25,7 +25,7 @@ https://apibrasil.com.br/documentacoes
 
 ## Como usar esta SDK? 
 
-1. Faça seu cadastro na plataforma -> https://apibrasil.com.br
+1. Faça seu cadastro na plataforma -> https://app.apibrasil.io
 
 2. Obtenha suas credenciais -> https://plataforma.apibrasil.com.br/myaccount/credentials
     - Importante: Você pode colocar suas credenciais diretamente em código o que chamamos de hard-coded, porém nós recomendamos que você coloque suas credenciais em variáveis de ambiente ou serviços gerenciados específicos para secrets.
